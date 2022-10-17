@@ -1,0 +1,75 @@
+Figura[] p;
+
+cond = false;
+
+if(cond)
+	p = new Triangulo();
+else
+	p = new Circulo();
+
+// ...
+
+
+p.area();
+
+p = new Cuadrado();
+
+else if(p instanceof Cuadrado)
+	// 3
+else if(p instanceof Rectangulo)
+	// 2
+else if(p instanceof Circulo)
+	((Circulo)p).perimetro();
+
+if(p instanceof Figura)
+	// 1
+
+
+Grafico r;
+r = new Persona()
+r = new Circulo();
+
+r.pintate()
+
+if(o instanceof Grafico)
+	((Grafico)o).pintate()
+
+1.pintate()
+2.pintate(String donde)
+3.pintate(int cuantas, String donde)
+4.pintate(File donde)
+5.pintate(String cuantas, String donde)
+6.pintate(String donde, int cuantas)
+
+a.pintate(Figura f)
+b.pintate(Circulo f)
+
+p = new Circulo();
+pintate((Figura)p);
+
+pintate("1", "aqui")
+pintate()
+
+suma(int a, int b)
+suma(String a, String b)
+
+
+class Figura
+- area(String a)
+
+class Circulo
+- area()
+- area(int cuantas)
+
+
+
+
+
+
+
+
+
+
+
+
+
