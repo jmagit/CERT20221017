@@ -12,8 +12,8 @@ public class Principal {
 	public static void main(String[] args) {
 		var app = new Principal();
 //		app.ejer1();
-		app.juegoNumero();
-//		app.juegoPiedraPapelTijera();
+//		app.juegoNumero();
+		app.juegoPiedraPapelTijera();
 //		app.decode("3+4+3,4-7*1=");
 //		app.decode("0,1+0,2+0,7-0,9=");
 	}
