@@ -1,5 +1,6 @@
 package com.example;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Principal {
@@ -11,10 +12,15 @@ public class Principal {
 	
 	public void ejer1() {
 		Scanner teclado = new Scanner(System.in); 
+		var rnd = new Random(); int num = rnd.nextInt(10);  
 		System.out.println("Hola mundo");
 		System.out.print("Dame valor: ");
 		String cad = teclado.nextLine();  
-		System.out.println("Leido: " + cad);
+		System.out.println("Leido: " + Integer.parseInt(cad));
+		System.out.println("Generado: " + rnd.nextInt(10));
+		System.out.println("Generado: " + rnd.nextInt(10));
+		System.out.println("Generado: " + rnd.nextInt(10));
+		System.out.println("Generado: " + rnd.nextInt(10));
 		
 	}
 	
