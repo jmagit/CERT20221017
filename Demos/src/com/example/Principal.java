@@ -1,10 +1,14 @@
 package com.example;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 
 import com.example.eunmeraciones.DiasDeLaSemana;
 import com.example.eunmeraciones.DiasLaborales;
+import com.example.tipos.Alumno;
+import com.example.tipos.Curso;
 import com.example.tipos.Persona;
+import com.example.tipos.Profesor;
 
 /**
  * Clase principal de las demos del curso
@@ -26,10 +30,26 @@ public class Principal {
 	}
 
 	public void clases() {
-		Persona persona = new Persona(1, "    ", "Grillo");
+		Persona persona = new Profesor(1, "Pepito", "Grillo", 2000, LocalDate.of(2000, 1, 1));
+		var profe = new Profesor(1, "Pepito", "Grillo", 2000, LocalDate.of(2000, 1, 1));
+		System.out.println(profe.equals(persona) ? "Iguales" : "distintos");
 		//persona.edadJubilacion = 1;
 		var s = persona.getNombre();
-		
+		persona.setFechaNacimiento("2000-01-01");
+		persona.setFechaNacimiento(LocalDate.of(2000, 1, 1));
+		System.out.println(persona);
+		((Profesor)profe).actualizaSalario(1.10);
+		System.out.println(profe);
+		var alum = new Alumno(1, "Alum", "Grillo", LocalDate.of(2000, 1, 1), 80);
+		System.out.println(profe.equals(alum) ? "Iguales" : "distintos");
+		alum.ponNota(0, 0);
+		System.out.println(alum);
+		var curso = new Curso(profe);
+		System.out.println(curso.getProfe());
+		var p = curso.getProfe();
+		p.setSalario(3000);
+//		System.out.println(p);
+//		System.out.println(curso.getProfe());
 	}
 	public void enumeraciones() {
 		byte d = 0;

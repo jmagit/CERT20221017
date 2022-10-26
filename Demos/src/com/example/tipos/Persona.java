@@ -1,8 +1,10 @@
 package com.example.tipos;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
-public class Persona {
+public abstract class Persona {
 	public static final int MAYORIA_EDAD = 18;
 	public final int edadJubilacion;
 	
@@ -12,9 +14,9 @@ public class Persona {
 	private LocalDate fechaNacimiento;
 	private int edad = -1;
 	
-	public Persona() {
-		edadJubilacion = 67;
-	}
+//	public Persona() {
+//		edadJubilacion = 67;
+//	}
 	
 	public Persona(int id, String nombre, String apellidos) {
 		this(id, nombre, apellidos, null, 67);
@@ -55,27 +57,61 @@ public class Persona {
 	}
 
 	private int calculaEdad() {
-		return -1;
+		var hoy = LocalDate.now();
+		return (int)fechaNacimiento.until(hoy, ChronoUnit.YEARS);
 	}
+	
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		if(fechaNacimiento == null) {
+			this.fechaNacimiento = null;
 			edad = -1;
+			return;
 		}
+		var hoy = LocalDate.now();
+		if(fechaNacimiento.isAfter(hoy))
+			throw new IllegalArgumentException("Debe haber nacido ya");
 		this.fechaNacimiento = fechaNacimiento;
-		// calculo la edad
 		edad = calculaEdad();
 	}
-
+	public void setFechaNacimiento(String fecha) {
+		setFechaNacimiento(LocalDate.parse(fecha));
+	}
+	
 	public int getEdad() {
 		return edad;
 	}
 
-	public boolean isJuvilado() {
+	protected void setEdad(int valor) {
+		edad = valor;
+	}
+
+	public boolean isJubilado() {
 		return edad >= edadJubilacion;
 	}
 
 	public void jubilate() {
 		int i = nombre.length();
 	}
+	
+	public abstract void darClase();
+	@Override
+	public String toString() {
+		return "Persona [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", fechaNacimiento="
+				+ fechaNacimiento + ", edadJubilacion=" + edadJubilacion + ", edad=" + edad + "]";
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Persona))
+			return false;
+		Persona other = (Persona) obj;
+		return id == other.id;
+	}
+	
 	
 }
