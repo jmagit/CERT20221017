@@ -38,6 +38,7 @@ public class Principal {
 	 * te diré si es mayor o menor que el mío, pero tienes 10 intentos como mucho.
 	 */
 	public void juegoNumero() {
+		final int MAXIMO_INTENTOS = 10;
 		final int numeroBuscado = (new Random()).nextInt(100) + 1;
 		int numeroIntroducido;
 		int intentos = 0;
@@ -59,7 +60,7 @@ public class Principal {
 			} catch (NumberFormatException e) {
 				out.println("No es un número.");
 			}
-		} while (intentos < 10 && !encontrado);
+		} while (intentos < MAXIMO_INTENTOS && !encontrado);
 		if (encontrado) {
 			out.println("Bieeen!!! Acertaste.");
 		} else {
@@ -68,6 +69,7 @@ public class Principal {
 	}
 
 	public void juegoPiedraPapelTijera() {
+		enum Opciones {PIEDRA, PAPEL, TIJERA }
 		String[] jugador = new String[2];
 		int i = 0;
 		do {
@@ -95,6 +97,43 @@ public class Principal {
 		if(jugador[0].equals(jugador[1])) {
 			out.println("Empate");
 		} else if ("Piedra".equals(jugador[0]) && "Tijera".equals(jugador[1])
+				|| "Papel".equals(jugador[0]) && "Piedra".equals(jugador[1])
+				|| "Tijera".equals(jugador[0]) && "Papel".equals(jugador[1])) {
+			out.println("Gana jugador 1, " + jugador[0] + " gana a " + jugador[1]);
+		} else {
+			out.println("Gana jugador 2, " + jugador[1] + " gana a " + jugador[0]);
+		}
+	}
+
+	public void juegoPiedraPapelTijeraConEnum() {
+		enum Opciones { PIEDRA, PAPEL, TIJERA }
+		Opciones[] jugador = new Opciones[2];
+		int i = 0;
+		do {
+			out.println("Jugador " + (i + 1) + ": ");
+			out.println("\tA. Piedra");
+			out.println("\tB. Papel");
+			out.println("\tC. Tijera");
+			out.print("Dame opción: ");
+			String jugada = teclado.nextLine().toUpperCase();
+			switch (jugada) {
+			case "A":
+				jugador[i++] = Opciones.PIEDRA;
+				break;
+			case "B":
+				jugador[i++] = Opciones.PAPEL;
+				break;
+			case "C":
+				jugador[i++] = Opciones.TIJERA;
+				break;
+			default:
+				out.println("Opción incorrecta");
+				break;
+			}
+		} while (i < 2);
+		if(jugador[0].equals(jugador[1])) {
+			out.println("Empate");
+		} else if ((jugador[0] == Opciones.PIEDRA && jugador[1] == Opciones.TIJERA)
 				|| "Papel".equals(jugador[0]) && "Piedra".equals(jugador[1])
 				|| "Tijera".equals(jugador[0]) && "Papel".equals(jugador[1])) {
 			out.println("Gana jugador 1, " + jugador[0] + " gana a " + jugador[1]);

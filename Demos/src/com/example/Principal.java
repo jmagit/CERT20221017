@@ -2,6 +2,10 @@ package com.example;
 
 import java.util.Arrays;
 
+import com.example.eunmeraciones.DiasDeLaSemana;
+import com.example.eunmeraciones.DiasLaborales;
+import com.example.tipos.Persona;
+
 /**
  * Clase principal de las demos del curso
  * 
@@ -18,9 +22,30 @@ public class Principal {
 	public static void main(String[] args) {
 		Principal app = new Principal();
 		// System.out.println(app.suma(2, 2));
-		app.flujo();
+		app.clases();
 	}
 
+	public void clases() {
+		Persona persona = new Persona(1, "    ", "Grillo");
+		//persona.edadJubilacion = 1;
+		var s = persona.getNombre();
+		
+	}
+	public void enumeraciones() {
+		byte d = 0;
+		d = -1;
+		DiasDeLaSemana dia = DiasDeLaSemana.LUNES;
+		// dia = DiasLaborales.LUNES;
+		if(dia == DiasDeLaSemana.DOMINGO) {}
+		switch (dia) {
+		case LUNES:
+			
+			break;
+
+		default:
+			break;
+		}
+	}
 	public void flujo() {
 		String s = "uno";
 		int i = 3;
