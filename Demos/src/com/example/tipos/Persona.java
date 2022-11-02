@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
-public abstract class Persona {
+public abstract class Persona implements Cloneable {
 	public static final int MAYORIA_EDAD = 18;
 	public final int edadJubilacion;
 	

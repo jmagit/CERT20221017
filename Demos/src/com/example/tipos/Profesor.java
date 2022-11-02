@@ -43,13 +43,14 @@ public class Profesor extends Persona {
 	
 	@Override
 	public Profesor clone() {
-//		try {
-//			return (Profesor)super.clone();
-//		} catch (CloneNotSupportedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		return new Profesor(getId(), getNombre(), getApellidos(), salario, getFechaNacimiento());
+		try {
+			return (Profesor)super.clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+//		return new Profesor(getId(), getNombre(), getApellidos(), salario, getFechaNacimiento());
 	}
 	
 }
