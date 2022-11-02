@@ -5,7 +5,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 import java.util.Optional;
 
-import com.example.excepciones.DemosException;
+import com.example.excepciones.InvalidDataException;
 
 public abstract class Persona implements Cloneable, Grafico {
 	public static final int MAYORIA_EDAD = 18;
@@ -60,9 +60,9 @@ public abstract class Persona implements Cloneable, Grafico {
 	 * @return
 	 * @throws DemosException
 	 */
-	public LocalDate getFechaNacimiento() throws DemosException {
+	public LocalDate getFechaNacimiento() {
 		if(fechaNacimiento == null)
-			throw new DemosException("No tengo fecha de nacimiento");
+			throw new InvalidDataException("No tengo fecha de nacimiento");
 		return fechaNacimiento;
 	}
 	public boolean hasFechaNacimiento() {

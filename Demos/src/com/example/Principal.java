@@ -6,6 +6,7 @@ import java.util.Arrays;
 import com.example.eunmeraciones.DiasDeLaSemana;
 import com.example.eunmeraciones.DiasLaborales;
 import com.example.excepciones.DemosException;
+import com.example.excepciones.InvalidDataException;
 import com.example.tipos.Alumno;
 import com.example.tipos.Curso;
 import com.example.tipos.EjemplosGenericos.ElementInt;
@@ -14,6 +15,8 @@ import com.example.tipos.EjemplosGenericos.ElementoInt;
 import com.example.tipos.EjemplosGenericos.Lista;
 import com.example.tipos.Grafico;
 import com.example.tipos.Persona;
+import com.example.tipos.PersonasRepository;
+import com.example.tipos.PersonasRepositoryMock;
 import com.example.tipos.Profesor;
 
 /**
@@ -33,13 +36,17 @@ public class Principal {
 		Principal app = new Principal();
 		// System.out.println(app.suma(2, 2));
 		try {
-			app.errores();
+			app.consultas(new PersonasRepositoryMock());
 		} catch (Exception e) {
 			System.err.println("En principal");
 			e.printStackTrace();
 		}
 	}
 
+	public void consultas(PersonasRepository dao) {
+		var lst = dao.getAll();
+		lst.forEach(System.out::println);
+	}
 	public void errores() throws Exception {
 		Persona persona = new Profesor(1, "Pepito", "Grillo");
 		// persona = new Profesor(1, "Pepito", "Grillo", 2000, LocalDate.of(2000, 1,
@@ -47,7 +54,7 @@ public class Principal {
 		try (Curso curso = new Curso(new Profesor(1, "Pepito", "Grillo"))) {
 			try {
 				persona.getFechaNacimiento();
-			} catch (DemosException e) {
+			} catch (InvalidDataException e) {
 				System.err.println("Interior");
 				e.printStackTrace();
 			}

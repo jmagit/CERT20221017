@@ -42,8 +42,8 @@ public class Profesor extends Persona {
 
 	@Override
 	public String toString() {
-		return "Profesor [getId()=" + getId() + ", getNombre()=" + getNombre() + ", getApellidos()=" + getApellidos()
-				+ ", salario=" + salario + "]";
+		return "Profesor [id=" + getId() + ", nombre=" + getNombre() + ", apellidos=" + getApellidos()
+				+ ", salario=" + salario + ", edad="+ (getEdad().isEmpty() ? "" : getEdad().get()) +"]";
 	}
 	
 	@Override
