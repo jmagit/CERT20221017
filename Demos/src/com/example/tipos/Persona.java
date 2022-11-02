@@ -3,8 +3,11 @@ package com.example.tipos;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
+import java.util.Optional;
 
-public abstract class Persona implements Cloneable {
+import com.example.excepciones.DemosException;
+
+public abstract class Persona implements Cloneable, Grafico {
 	public static final int MAYORIA_EDAD = 18;
 	public final int edadJubilacion;
 	
@@ -12,7 +15,7 @@ public abstract class Persona implements Cloneable {
 	private String nombre = "(anonimo)";
 	private String apellidos;
 	private LocalDate fechaNacimiento;
-	private int edad = -1;
+	private Integer edad = null;
 	
 //	public Persona() {
 //		edadJubilacion = 67;
@@ -52,11 +55,22 @@ public abstract class Persona implements Cloneable {
 		this.apellidos = apellidos;
 	}
 
-	public LocalDate getFechaNacimiento() {
+	/**
+	 * 
+	 * @return
+	 * @throws DemosException
+	 */
+	public LocalDate getFechaNacimiento() throws DemosException {
+		if(fechaNacimiento == null)
+			throw new DemosException("No tengo fecha de nacimiento");
 		return fechaNacimiento;
+	}
+	public boolean hasFechaNacimiento() {
+		return fechaNacimiento != null;
 	}
 
 	private int calculaEdad() {
+		assert fechaNacimiento != null : "Se suponia que tenias la fecha de nacimiento";
 		var hoy = LocalDate.now();
 		return (int)fechaNacimiento.until(hoy, ChronoUnit.YEARS);
 	}
@@ -64,7 +78,7 @@ public abstract class Persona implements Cloneable {
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		if(fechaNacimiento == null) {
 			this.fechaNacimiento = null;
-			edad = -1;
+			edad = null;
 			return;
 		}
 		var hoy = LocalDate.now();
@@ -72,13 +86,14 @@ public abstract class Persona implements Cloneable {
 			throw new IllegalArgumentException("Debe haber nacido ya");
 		this.fechaNacimiento = fechaNacimiento;
 		edad = calculaEdad();
+		assert edad >= 0 : "Edad negativa";
 	}
 	public void setFechaNacimiento(String fecha) {
 		setFechaNacimiento(LocalDate.parse(fecha));
 	}
 	
-	public int getEdad() {
-		return edad;
+	public Optional<Integer> getEdad() {
+		return hasFechaNacimiento() ? Optional.of(edad):Optional.empty();
 	}
 
 	protected void setEdad(int valor) {

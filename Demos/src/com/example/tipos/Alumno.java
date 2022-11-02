@@ -24,4 +24,9 @@ public class Alumno extends Persona {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void pintate() {
+		System.out.println("Soy el alumno");
+	}
  }

@@ -5,6 +5,11 @@ import java.time.LocalDate;
 public class Profesor extends Persona {
 	private double salario;
 
+	public Profesor(int id, String nombre, String apellidos) {
+		super(id, nombre, apellidos);
+		this.salario = 0;
+	}
+
 	public Profesor(int id, String nombre, String apellidos, double salario, LocalDate fechaNacimiento) {
 		super(id, nombre, apellidos, fechaNacimiento, 67);
 		this.salario = salario;
@@ -51,6 +56,11 @@ public class Profesor extends Persona {
 		}
 		return null;
 //		return new Profesor(getId(), getNombre(), getApellidos(), salario, getFechaNacimiento());
+	}
+
+	@Override
+	public void pintate() {
+		System.out.println("Soy el profesor");
 	}
 	
 }

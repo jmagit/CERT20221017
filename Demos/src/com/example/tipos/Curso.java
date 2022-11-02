@@ -1,6 +1,6 @@
 package com.example.tipos;
 
-public class Curso {
+public class Curso implements Grafico, AutoCloseable {
 	private Profesor profesor;
 	
 	public Curso(Profesor profesor) {
@@ -11,5 +11,15 @@ public class Curso {
 
 	public Profesor getProfe() {
 		return profesor.clone();
+	}
+
+	@Override
+	public void pintate() {
+		System.out.println("Soy el curso");
+	}
+
+	@Override
+	public void close() throws Exception {
+		System.out.println("Se ha cerrado el curso");
 	}
 }
