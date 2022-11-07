@@ -1,5 +1,7 @@
 package com.example;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -8,6 +10,7 @@ import com.example.eunmeraciones.DiasLaborales;
 import com.example.excepciones.DemosException;
 import com.example.excepciones.InvalidDataException;
 import com.example.tipos.Alumno;
+import com.example.tipos.Autor;
 import com.example.tipos.Curso;
 import com.example.tipos.EjemplosGenericos.ElementInt;
 import com.example.tipos.EjemplosGenericos.Elemento;
@@ -26,6 +29,7 @@ import com.example.tipos.Profesor;
  * @since 17
  */
 public class Principal {
+	private int privado = 0;
 
 	/**
 	 * Método principal
@@ -36,7 +40,8 @@ public class Principal {
 		Principal app = new Principal();
 		// System.out.println(app.suma(2, 2));
 		try {
-			app.consultas(new PersonasRepositoryMock());
+			// app.consultas(new PersonasRepositoryMock());
+			app.anotaciones();
 		} catch (Exception e) {
 			System.err.println("En principal");
 			e.printStackTrace();
@@ -47,7 +52,37 @@ public class Principal {
 		var lst = dao.getAll();
 		lst.forEach(System.out::println);
 	}
-	public void errores() throws Exception {
+
+	public void anotaciones() {
+		try {
+			var nombre = "cotilla";
+			Class clase = Class.forName("com.example.Principal"); // Principal.class;
+//		clase = app.getClass();
+
+//		for (var metodo : clase.getMethods()) {
+//			System.out.println(metodo.getName());
+//		}
+			Object app = clase.newInstance();
+			var m = clase.getMethod(nombre, null);
+			m.invoke(app, null);
+			var fld = clase.getDeclaredField("privado");
+			fld.setAccessible(true);
+			fld.set(app, 99);
+			m.invoke(app, null);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(Profesor.class.getAnnotation(Autor.class).nombre());
+		System.out.println(Grafico.class.getAnnotation(Autor.class).nombre());
+
+	}
+
+	public void cotilla() {
+		System.out.println("Valor privado:" + privado);
+	}
+
+	private void errores() throws Exception {
 		Persona persona = new Profesor(1, "Pepito", "Grillo");
 		// persona = new Profesor(1, "Pepito", "Grillo", 2000, LocalDate.of(2000, 1,
 		// 1));

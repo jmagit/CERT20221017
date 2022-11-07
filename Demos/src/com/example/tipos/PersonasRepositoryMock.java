@@ -23,7 +23,7 @@ public class PersonasRepositoryMock implements PersonasRepository {
 		for(Persona p: listado)
 			if(p instanceof Alumno a) {
 				for(int i = 0, asignaturas = rnd.nextInt(10); i < asignaturas; i++)
-					((Alumno) p).addNota(i, rnd.nextInt(11));
+					((Alumno) p).ponNota(i, rnd.nextInt(11));
 			}
 	}
 

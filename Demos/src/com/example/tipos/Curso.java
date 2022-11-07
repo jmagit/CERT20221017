@@ -1,6 +1,7 @@
 package com.example.tipos;
 
 public class Curso implements Grafico, AutoCloseable {
+	@Autor
 	private Profesor profesor;
 	
 	public Curso(Profesor profesor) {

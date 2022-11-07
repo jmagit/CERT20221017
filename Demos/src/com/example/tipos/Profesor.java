@@ -2,6 +2,7 @@ package com.example.tipos;
 
 import java.time.LocalDate;
 
+@Autor(nombre = "Yo mismo")
 public class Profesor extends Persona {
 	private double salario;
 
