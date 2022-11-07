@@ -40,8 +40,8 @@ public class Principal {
 		Principal app = new Principal();
 		// System.out.println(app.suma(2, 2));
 		try {
-			// app.consultas(new PersonasRepositoryMock());
-			app.anotaciones();
+			app.consultas(new PersonasRepositoryMock());
+			// app.anotaciones();
 		} catch (Exception e) {
 			System.err.println("En principal");
 			e.printStackTrace();
@@ -50,7 +50,13 @@ public class Principal {
 
 	public void consultas(PersonasRepository dao) {
 		var lst = dao.getAll();
-		lst.forEach(System.out::println);
+//		lst.forEach(System.out::println);
+		System.out.println(lst.stream()
+			.filter(p -> p instanceof Profesor)
+			.map(p -> (Profesor)p)
+			.mapToDouble(p -> p.getSalario())
+			.average().getAsDouble());
+			//.forEach(p -> System.out.println(p.getSalario()));
 	}
 
 	public void anotaciones() {

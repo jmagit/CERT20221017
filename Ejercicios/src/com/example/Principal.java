@@ -30,7 +30,7 @@ public class Principal {
 		var app = new Principal();
 //		app.ejer1();
 //		app.juegoNumero();
-//		app.juegoConClase();
+		app.juegoConClase();
 //		app.juegoPiedraPapelTijera();
 //		app.decode("3+4+3,4-7*1=");
 //		app.decode("0,1+0,2+0,7-0,9=");
@@ -46,7 +46,7 @@ public class Principal {
 //		}
 //		app.naipes();
 //		app.ajedrez();
-		app.vending();
+//		app.vending();
 	}
 
 	public void ejer1() {
@@ -103,16 +103,16 @@ public class Principal {
 		try {
 			Juego<String> juego = new com.example.juegos.numero.JuegoDelNumero();
 			juego.inicializar();
-//			((com.example.juegos.numero.JuegoDelNumero) juego).addNotificaListener(arg -> {
-//				out.println("NOTIFICA: " + arg.getMsg());
-//				out.println("¿Qieres cancelar?:");
-//				arg.setCancel("s".equals(teclado.nextLine()));
-//			});
+			((com.example.juegos.numero.JuegoDelNumero) juego).addNotificaListener(arg -> {
+				out.println("NOTIFICA: " + arg.getMsg());
+				out.println("¿Qieres cancelar?:");
+				arg.setCancel("s".equals(teclado.nextLine()));
+			});
 			for (int intentos = 1; intentos <= 10; intentos++) {
 				out.print("Dame tu número del 1 al 100 (" + (juego.getJugada() + 1) + " de 10): ");
 				try {
 					juego.jugada(teclado.nextLine());
-                    out.println(juego.getResultado());
+//                    out.println(juego.getResultado());
 					if (juego.getFinalizado()) {
 						break;
 					}
