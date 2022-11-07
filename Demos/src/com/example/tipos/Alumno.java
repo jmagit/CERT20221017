@@ -18,7 +18,7 @@ public class Alumno extends Persona {
 			throw new IllegalArgumentException("Asignatura fuera de rango");
 		}
 	}
-	public double media() {
+	public double getMedia() {
 		int cont = 0;
 		int rslt = 0;
 		for(int nota: notas)
